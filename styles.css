@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&family=Poppins:wght@400&display=swap');
+:root {
+    --body-font-family: Poppins, sans-serif;
+    --heading-font-family: 'Montserrat', sans-serif;
+    --base-font-size: 14px;
+
+    --heading-color: #6B6B6B;
+    --paragraph-color: #999;
+
+    --footer-background-color: #282828;
+    --footer-color-dark: #777;
+    --footer-color-light: #FFF;
+}
+
+*, *::before, *::after { box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--paragraph-color);
+    font-family: var(--body-font-family);
+    font-size: var(--base-font-size);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font-family);
+    color: var(--heading-color);
+    font-weight: 300;
+}
+
+img { width: 100%; }
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.page-header {
+    --header-background: transparent;
+    --logo-color: var(--heading-color);
+    --logo-symbol-color: var(--footer-background-color);
+    --logo-symbol-text-color: var(--footer-color-light);
+
+    position: relative;
+    height: 4rem;
+    padding: 1rem;
+    background-color: var(--header-background);
+    transition: ease-in-out 250ms;
+}
+
+.page-header.is-expanded {
+    --header-background: var(--footer-background-color);
+    --logo-color: var(--paragraph-color);
+    --logo-symbol-color: var(--footer-color-light);
+    --logo-symbol-text-color: var(--footer-color-dark);
+
+    height: 18rem;
+}
+
+.logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-family: var(--heading-font-family);
+    font-size: 1.5rem;
+    color: var(--logo-color);
+    text-decoration: none;
+}
+
+.logo:hover { --logo-color: var(--paragraph-color); }
+
+/* Symbol sizes hard-coded for consitent look across devices */
+.logo::before {
+    content: 'M';
+    display: inline-block;
+    margin-right: .5rem;
+    padding: 0 10px;
+    font-size: 32px;
+    background-color: var(--logo-symbol-color);
+    color: var(--logo-symbol-text-color);
+    border-radius: 50%;
+}
+
+.logo::after {
+    content: '.';
+    position: absolute;
+    bottom: 4px;
+    left: 33px;
+    color: var(--logo-symbol-color);
+    font-size: 35px;
+}
+
+.toggle-btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 30px;
+    height: 30px; 
+    cursor: pointer;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+.toggle-btn .bars, .toggle-btn .bars::before, .toggle-btn .bars::after {
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: var(--logo-symbol-color);
+    border-radius: .5rem;
+    transition: ease-in-out 250ms;
+}
+
+.toggle-btn .bars::before, .toggle-btn .bars::after {
+    content: '';
+    position: absolute;
+}
+
+.toggle-btn .bars::before { top: 0; }
+.toggle-btn .bars::after { bottom: 0; }
+
+.page-header.is-expanded .toggle-btn .bars { background: transparent; }
+
+.page-header.is-expanded .toggle-btn .bars::before {
+    position: relative;
+    transform: rotate(45deg) translateY(.5em);
+}
+
+.page-header.is-expanded .toggle-btn .bars::after {
+    transform: rotate(-45deg) translateY(-.7em);
+}
+
+.main-nav {
+    display: none;
+    margin: 0;
+    padding: 1rem 0 0;
+    list-style: none;
+}
+
+.page-header.is-expanded .main-nav { display: block; }
+
+.main-nav li {
+    display: block;
+    width: 100%;
+    padding: 1rem .5rem;
+}
+
+.main-nav a {
+    color: #FFF;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.jumbotron {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    text-align: center;
+}
+
+.jumbotron h1 {
+    margin: 0;
+    font-weight: 100;
+    font-size: 4em;
+}
+
+.jumbotron p { margin: .3em 0; }
+
+.row {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+}
+
+.col h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.our-team-section h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.our-team-section h2::before, .our-team-section h2::after {
+    content: '-'
+}
+
+.our-team-section p { text-align: center; }
+
+.team-slider {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    margin: 3rem auto;
+    transition: ease-in-out 300ms;
+}
+
+.team-slider .arrow {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: ease-in-out 250ms;
+}
+
+.team-slider .arrow i { margin: 2rem; }
+
+.team-slider .arrow:hover {
+    background-color: var(--paragraph-color);
+    color: #FFF;
+}
+
+.team-member p {
+    margin: 0;
+    text-align: left;
+    font-weight: bold;
+}
+
+.social {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.social li, .social .icon, .social a {
+    display: flex;
+    align-items: center;
+    transition: ease-in-out 250ms;
+}
+
+.social li { opacity: 0.6; }
+.social li:hover { opacity: 1; }
+
+.social .icon {
+    width: var(--social-icon-size, 25px);
+    height: var(--social-icon-size, 25px);
+    background-color: var(--social-icon-color);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: .3rem;
+    color: var(--social-icon-sym-color);
+    border-radius: 50%;
+}
+
+.team-member .social {
+    --social-icon-color: var(--paragraph-color);
+    --social-icon-sym-color: #FFF;
+    --social-icon-size: 15px;
+
+    display: flex;
+    margin-top: .3rem;
+}
+
+.team-member .social a { font-size: .5rem; text-decoration: none; }
+
+.team-member .social-title { display: none; }
+
+.page-footer {
+    margin: 1rem;
+    padding: 2rem 1rem;
+    background-color: var(--footer-background-color);
+    text-align: center;
+}
+
+.page-footer h5 {
+    color: var(--footer-color-light);
+    font-weight: bold;
+}
+
+.page-footer address {
+    display: block;
+    font-style: normal;
+}
+
+.page-footer a {
+    color: var(--footer-color-dark);
+    text-decoration: none;
+    transition: ease-in-out 250ms;
+}
+
+.page-footer a:hover {
+    color: var(--footer-color-light);
+}
+
+.page-footer .social {
+    --social-icon-color: var(--footer-color-dark);
+    --social-icon-sym-color: var(--footer-background-color);
+    --social-icon-size: 25px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.page-footer .social li { justify-content: center;}
+
+.spacer {
+    width: calc(100% + 2rem);
+    height: 1px;
+    margin: 4rem -1rem 2rem;
+    border-top: 1px solid var(--footer-color-dark);
+}
+
+.to-top-btn {
+    visibility: hidden;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--paragraph-color);
+    color: #FFF;
+    border-radius: 50%;
+    opacity: 0.45;
+    cursor: pointer;
+    transition: all 250ms;
+}
+
+.to-top-btn:hover { opacity: 1; }
+
+/* Tablets */
+@media (min-width: 600px) {
+    .page-header, .page-header.is-expanded {
+        --header-background: transparent;
+        --logo-color: var(--heading-color);
+        --logo-symbol-color: var(--footer-background-color);
+        --logo-symbol-text-color: var(--footer-color-light);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 4rem;
+    }
+
+    .toggle-btn { display: none; }
+
+    .main-nav {
+        display: block;
+    }
+
+    .main-nav li {
+        display: inline;
+    }
+
+    .main-nav a { color: var(--header-color); }
+    .main-nav a:hover, .main-nav a.active { color: var(--heading-color); }
+
+    .about-us-section .row { display: grid; }
+
+    .team-slider { width: 60%; }
+
+    .page-footer .social {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Laptops & Larger Devices */
+@media (min-width: 900px) {
+    .jumbotron h1 { font-size: 6vw; /* vw makes font responsive for larger screens */ }
+    
+    .row { display: grid; }
+
+    .team-slider {
+        grid-template-columns: 3rem repeat(4, 1fr) 3rem;
+        width: 100%;
+    }
+
+    .team-slider .arrow { grid-column: span 1; }
+    .team-slider .arrow i { transform: rotate(-90deg); }
+}
